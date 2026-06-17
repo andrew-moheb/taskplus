@@ -1,4 +1,5 @@
 "use client";
+
 import { UserType, useUserStore } from "@/store/user";
 import { notify } from "@/utils/toast";
 import {
@@ -29,6 +30,10 @@ function page() {
     newpassword: "",
     confirmpassword: "",
   });
+
+  if (!currentUser) {
+    return <div>Loading...</div>;
+  }
 
   const [formUserInfoData, setUserInfoData] = useState({
     firstname: firstname,
