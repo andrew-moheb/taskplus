@@ -72,7 +72,7 @@ function Requests() {
         <Flex justify={"space-between"}>
           <h1 className="text-2xl font-semibold ">My Requests</h1>
           {currentUser?.role !== "Manager" && (
-            <Button onClick={open} className="!font-medium">
+            <Button onClick={open} className="font-medium!">
               + Add Request
             </Button>
           )}
@@ -87,7 +87,7 @@ function Requests() {
             size="md"
             leftSection={<MdOutlineSearch size={20} />}
             placeholder="Search By Word"
-            className="w-[100%]"
+            className="w-full"
           />
           <Flex gap={20}>
             {currentUser?.role !== "Manager" &&
@@ -118,7 +118,7 @@ function Requests() {
               ))}
           </Flex>
         </Flex>
-        <AddRequestModal open={open} opened={opened} close={close} />
+        <AddRequestModal opened={opened} close={close} />
         <ToastContainer />
         {filteredRequests.length === 0 && (
           <Flex align={"center"} gap={12} justify={"center"}>

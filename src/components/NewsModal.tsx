@@ -2,7 +2,7 @@ import { News } from "@/dummyData";
 import { Flex, Modal } from "@mantine/core";
 import NewsCard from "./NewsCard";
 
-function NewsModal({ opened, close }) {
+function NewsModal({ opened, close }: { opened: boolean; close: () => void }) {
   return (
     <Modal opened={opened} onClose={close} size="90%" centered>
       <Flex gap={16} align={"center"} wrap={"wrap"}>

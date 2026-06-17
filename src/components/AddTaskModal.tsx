@@ -1,5 +1,4 @@
 "use client";
-
 import { notify } from "@/utils/toast";
 import { useTaskStore } from "@/store/tasks";
 import { useUserStore } from "@/store/user";
@@ -135,6 +134,7 @@ function AddTaskModal({
         type: file.type,
         size: file.size,
       })),
+      pointsAwarded: false,
     });
 
     resetForm();
@@ -177,7 +177,7 @@ function AddTaskModal({
                 size="md"
                 className="mb-8 "
                 multiple
-                value={null}
+                value={undefined}
                 onChange={handleChanges}
                 h={"48px"}
                 radius={12}

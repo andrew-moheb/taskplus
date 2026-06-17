@@ -3,11 +3,10 @@ import { useUserStore } from "@/store/user";
 import { Button, Flex, GridCol, PasswordInput, TextInput } from "@mantine/core";
 import Image from "next/image";
 import { useState } from "react";
-import { Bounce, ToastContainer, Zoom, toast } from "react-toastify";
-import { CiLock, CiMail } from "react-icons/ci";
+import { ToastContainer } from "react-toastify";
+import { CiMail } from "react-icons/ci";
 import { notify } from "@/utils/toast";
 import Link from "next/link";
-import { text } from "stream/consumers";
 
 function ForgotPassword() {
   const {

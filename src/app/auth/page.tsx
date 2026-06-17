@@ -5,7 +5,6 @@ import {
   Checkbox,
   Flex,
   GridCol,
-  MultiSelect,
   PasswordInput,
   Select,
   Text,
@@ -114,7 +113,6 @@ function UserAuth() {
                     type="text"
                     label="First name"
                     withAsterisk
-                    // error={formErrors?.email}
                     name="firstname"
                     onChange={handleChange}
                     labelProps={{ className: "mb-2" }}
@@ -155,7 +153,7 @@ function UserAuth() {
                     name="role"
                     placeholder="ex: developer"
                     size="md"
-                    onChange={setRoles}
+                    onChange={(val) => setRoles(val ?? "")}
                     data={[`Developer`, "Designer", "Manager", "Tester"]}
                   />
                 </Flex>

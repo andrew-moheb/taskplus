@@ -22,7 +22,6 @@ import OverTimeForm, { Intial_OverTime_Form } from "./OverTimeForm";
 import { Intial_RemoteWork_Form } from "./RemoteWorkForm";
 import RemoteWorkForm from "./RemoteWorkForm";
 import LoanForm, { Intial_Loan_Form } from "./LoanForm";
-import { useRouter } from "next/navigation";
 
 const requestTypes = [
   { icon: <MdTimeToLeave size={18} />, label: "Leave" },
@@ -184,7 +183,7 @@ export default function AddRequestModal({
               h={"100%"}
               py={20}
               radius={16}
-              className={`${r.label == kind ? "" : "!border !border-border !font-medium"}`}
+              className={`${r.label == kind ? "" : "border! border-border! font-medium!"}`}
             >
               <Stack gap={12} align="center">
                 <span>{r.icon}</span>

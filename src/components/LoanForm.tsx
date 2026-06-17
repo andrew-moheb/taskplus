@@ -1,8 +1,5 @@
-import { Loan, OverTime } from "@/store/Requests";
+import { Loan } from "@/store/Requests";
 import { Flex, NumberInput, Select, Textarea } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
-import { MdDateRange } from "react-icons/md";
-import TimePicker from "./TimePicker";
 import { getAllManagers } from "@/utils/managers";
 
 export const Intial_Loan_Form: Loan = {

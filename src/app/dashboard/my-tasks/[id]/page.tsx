@@ -22,10 +22,6 @@ import { MdDateRange } from "react-icons/md";
 import { TiDelete } from "react-icons/ti";
 import { v4 } from "uuid";
 
-// Types
-type Priority = "low" | "medium" | "high";
-type Status = "todo" | "inprogress" | "completed";
-
 // statusOptions
 type statusOptiontype = {
   label: string;
@@ -92,7 +88,7 @@ function TaskDetails() {
     setFiles((prev) => prev.filter((file) => file !== fileToRemove));
   };
 
-  const updateForm = (key: keyof typeof existingTask, value: any) => {
+  const updateForm = (key: keyof import("@/store/tasks").Task, value: any) => {
     setFormData((prev: any) => ({ ...prev, [key]: value }));
   };
 
@@ -166,7 +162,7 @@ function TaskDetails() {
                 size="md"
                 className="mb-8 "
                 multiple
-                value={null}
+                value={undefined}
                 onChange={handleChanges}
                 h={"48px"}
                 radius={12}

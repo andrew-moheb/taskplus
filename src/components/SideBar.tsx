@@ -1,20 +1,12 @@
 "use client";
 
-import { Flex, Text, UnstyledButton } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 import {
   MdDashboard,
   MdOutlineTask,
   MdLogout,
-  MdKeyboard,
-  MdBookmarkAdded,
-  MdViewKanban,
-  MdSettingsEthernet,
   MdSettings,
-  MdCountertops,
   MdCardGiftcard,
-  MdRequestPage,
-  MdOutlineRequestQuote,
-  MdRequestQuote,
   MdNoteAdd,
 } from "react-icons/md";
 import Image from "next/image";

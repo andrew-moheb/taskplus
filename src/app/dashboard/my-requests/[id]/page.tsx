@@ -27,12 +27,13 @@ export default function RequestModal() {
   const { getRequestById, approve, reject } = useRequestStore();
   const request = getRequestById(id);
   const [managerNote, setManagerNote] = useState<string | undefined>(
-    request.managerNote,
+    request?.managerNote,
   );
-  console.log("request", request);
   const [opened, { open, close }] = useDisclosure(true);
   const router = useRouter();
   const { currentUser } = useUserStore();
+
+  if (!request) return null;
 
   const modalTitle = (
     <Group justify="space-between" style={{ flex: 1, marginRight: "1rem" }}>
@@ -235,23 +236,6 @@ export default function RequestModal() {
               readOnly
               value={convertTo12Hour(request.endTime)}
             />
-            {/* <TextInput
-              styles={{
-                label: {
-                  fontWeight: 500,
-                  fontSize: "14px",
-                  marginBottom: "8px",
-                },
-                input: {
-                  border: "none",
-                  padding: 0,
-                  color: "#234199",
-                },
-              }}
-              label={"End Date"}
-              readOnly
-              value={request.endDate}
-            /> */}
           </Flex>
           <Flex gap={20}>
             <Textarea
@@ -440,7 +424,7 @@ export default function RequestModal() {
                 notify.fail("Request is rejected");
               }}
               c={"#FF2F43"}
-              className="!bg-[#FF2F43]/10"
+              className="bg-[#FF2F43]/10!"
             >
               Reject
             </Button>
@@ -451,7 +435,7 @@ export default function RequestModal() {
                 notify.success("Request is approved");
               }}
               c={"#3CAC04"}
-              className="!bg-[#3CAC04]/10"
+              className="bg-[#3CAC04]/10!"
             >
               Approve
             </Button>

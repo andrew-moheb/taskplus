@@ -41,8 +41,8 @@ function Dashboard() {
   const userRequests = getUserRequests(currentUser?.id as string);
   const router = useRouter();
 
-  const handleTaskPercentage = (status: Status) => {
-    if (!currentUser) return;
+  const handleTaskPercentage = (status: Status): number => {
+    if (!currentUser) return 0;
     const type = getTotalUserTasksByType(currentUser.id as string, status);
     const total = getTotalTasksByUser(currentUser?.id as string);
 
@@ -130,7 +130,6 @@ function Dashboard() {
               slideGap={16}
               mt={20}
               p={0}
-              dragfree
               emblaOptions={{
                 loop: true,
                 align: "center",

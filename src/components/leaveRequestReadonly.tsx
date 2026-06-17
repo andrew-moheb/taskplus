@@ -1,22 +1,30 @@
-import { Flex, Stack, Textarea, TextInput } from "@mantine/core";
-import React from "react";
+"use client";
 
-function leaveRequestReadonly() {
+import { Flex, Stack, Textarea, TextInput } from "@mantine/core";
+import { formatDate } from "@/utils/date";
+import { useUserStore } from "@/store/user";
+import type { RequestRecord } from "@/store/Requests";
+
+type LeaveRecord = Extract<RequestRecord, { kind: "leave" }>;
+
+function leaveRequestReadonly({
+  request,
+  managerNote,
+  setManagerNote,
+}: {
+  request: LeaveRecord;
+  managerNote: string | undefined;
+  setManagerNote: (val: string) => void;
+}) {
+  const { currentUser } = useUserStore();
+
   return (
     <Stack gap={16}>
       <Flex justify={"space-between"} gap={12}>
         <TextInput
           styles={{
-            label: {
-              fontWeight: 500,
-              fontSize: "14px",
-              marginBottom: "8px",
-            },
-            input: {
-              border: "none",
-              padding: 0,
-              color: "#234199",
-            },
+            label: { fontWeight: 500, fontSize: "14px", marginBottom: "8px" },
+            input: { border: "none", padding: 0, color: "#234199" },
           }}
           label={"Leave Duration"}
           readOnly
@@ -24,16 +32,8 @@ function leaveRequestReadonly() {
         />
         <TextInput
           styles={{
-            label: {
-              fontWeight: 500,
-              fontSize: "14px",
-              marginBottom: "8px",
-            },
-            input: {
-              border: "none",
-              padding: 0,
-              color: "#234199",
-            },
+            label: { fontWeight: 500, fontSize: "14px", marginBottom: "8px" },
+            input: { border: "none", padding: 0, color: "#234199" },
           }}
           label={"Leave Type"}
           readOnly
@@ -41,16 +41,8 @@ function leaveRequestReadonly() {
         />
         <TextInput
           styles={{
-            label: {
-              fontWeight: 500,
-              fontSize: "14px",
-              marginBottom: "8px",
-            },
-            input: {
-              border: "none",
-              padding: 0,
-              color: "#234199",
-            },
+            label: { fontWeight: 500, fontSize: "14px", marginBottom: "8px" },
+            input: { border: "none", padding: 0, color: "#234199" },
           }}
           label={"Start Date"}
           readOnly
@@ -58,16 +50,8 @@ function leaveRequestReadonly() {
         />
         <TextInput
           styles={{
-            label: {
-              fontWeight: 500,
-              fontSize: "14px",
-              marginBottom: "8px",
-            },
-            input: {
-              border: "none",
-              padding: 0,
-              color: "#234199",
-            },
+            label: { fontWeight: 500, fontSize: "14px", marginBottom: "8px" },
+            input: { border: "none", padding: 0, color: "#234199" },
           }}
           label={"End Date"}
           readOnly
@@ -77,11 +61,7 @@ function leaveRequestReadonly() {
       <Flex gap={20}>
         <Textarea
           styles={{
-            label: {
-              fontWeight: 500,
-              fontSize: "14px",
-              marginBottom: "8px",
-            },
+            label: { fontWeight: 500, fontSize: "14px", marginBottom: "8px" },
           }}
           label={"Reason"}
           rows={10}
@@ -93,17 +73,13 @@ function leaveRequestReadonly() {
         />
         <Textarea
           styles={{
-            label: {
-              fontWeight: 500,
-              fontSize: "14px",
-              marginBottom: "8px",
-            },
+            label: { fontWeight: 500, fontSize: "14px", marginBottom: "8px" },
           }}
           label={"Manager Note"}
           rows={10}
           w={"50%"}
           onChange={(e) => setManagerNote(e.target.value)}
-          value={request.managerNote ? request.managerNote : managerNote}
+          value={request.managerNote || managerNote}
           placeholder="Manager Note...."
           radius={8}
           readOnly={currentUser?.role !== "Manager"}

@@ -100,6 +100,7 @@ function Tasks() {
             new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
           );
         }
+        return 0;
       })
     : [];
 
@@ -146,7 +147,7 @@ function Tasks() {
               <Button
                 variant={"outline"}
                 onClick={() => setKanbanView(!kanbanview)}
-                className="!font-medium "
+                className="font-medium!"
               >
                 {kanbanview ? (
                   "All Tasks "
@@ -157,7 +158,7 @@ function Tasks() {
                   </div>
                 )}
               </Button>
-              <Button onClick={open} className="!font-medium">
+              <Button onClick={open} className="font-medium!">
                 + Add Task
               </Button>
             </Flex>
@@ -177,7 +178,7 @@ function Tasks() {
             <Select
               size="md"
               data={filterOptions}
-              onChange={(val) => setFilteredStatus(val)}
+              onChange={(val) => setFilteredStatus(val ?? undefined)}
               placeholder="Filter"
               className="w-[20%] !placeholder:text-text"
               leftSection={<CiFilter size={20} />}
@@ -186,7 +187,7 @@ function Tasks() {
               size="md"
               data={sortOptions}
               value={sortValue}
-              onChange={(val) => setSortValue(val)}
+              onChange={(val) => setSortValue(val ?? "new")}
               placeholder="Sort"
               className="w-[20%] !placeholder:text-text"
               leftSection={<MdSort size={20} />}

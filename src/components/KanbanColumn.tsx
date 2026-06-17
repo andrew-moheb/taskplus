@@ -2,13 +2,10 @@
 
 import { useState } from "react";
 import { useTaskStore } from "@/store/tasks";
-
-import { useUserStore } from "@/store/useUserStore";
 import { COLUMNS } from "../app/dashboard/my-tasks/page";
 import type { Task } from "../store/tasks";
 import { Flex } from "@mantine/core";
 import TaskCard from "./TaskCard";
-import { notify } from "@/utils/toast";
 
 function KanbanColumn({
   col,
@@ -19,7 +16,7 @@ function KanbanColumn({
   tasks: Task[];
   seeTaskDetails: (id: string) => void;
 }) {
-  const { updateTask, updateStatus, deleteTask } = useTaskStore();
+  const { updateStatus, deleteTask } = useTaskStore();
   const [dragOver, setDragOver] = useState(false);
   const onDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -116,7 +113,7 @@ function KanbanColumn({
               task={task}
               onDelete={deleteTask}
               onSeeDetails={seeTaskDetails}
-              onStatusChange={updateTask}
+              onStatusChange={updateStatus}
             />
           </div>
         ))}

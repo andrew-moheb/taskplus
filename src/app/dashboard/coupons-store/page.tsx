@@ -3,7 +3,6 @@
 import GiftCard from "@/components/giftCard";
 import { gifts } from "@/dummyData";
 import { useUserStore } from "@/store/user";
-
 import { notify } from "@/utils/toast";
 import { Button, Divider, Drawer, Flex, Stack, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -69,8 +68,8 @@ export default function Coupons() {
           <Stack gap={16} style={{ flex: 1 }}>
             <div className="w-full border rounded-2xl border-[#E7E7E7] h-32.5 relative flex justify-around items-center">
               <Image
-                src={selectedGift?.brandLogo}
-                alt={selectedGift?.description}
+                src={selectedGift?.brandLogo ?? ""}
+                alt={selectedGift?.description ?? ""}
                 width={200}
                 quality={100}
                 height={130}

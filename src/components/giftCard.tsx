@@ -1,7 +1,7 @@
 "use client";
 
 import { giftType } from "@/app/dashboard/coupons-store/page";
-import { Card, Text, Group, Stack, ActionIcon, Box } from "@mantine/core";
+import { Card, Text, Stack, ActionIcon, Box } from "@mantine/core";
 import Image from "next/image";
 import { MdOpenInNew } from "react-icons/md";
 
@@ -39,7 +39,7 @@ export default function GiftCard({
       shadow="md"
       radius="xl"
       withBorder
-      className="p-4 relative w-[18%] bg-white border-[#e7e7e7] transition duration-200 ease-in-out cursor-pointer"
+      className="p-4 relative w-[18%] bg-white border-border transition duration-200 ease-in-out cursor-pointer"
     >
       {/* Hang tag notch */}
       <Box
@@ -126,7 +126,7 @@ export default function GiftCard({
         <Text
           size="sm"
           fw={500}
-          className="!text-text-normal !hover:text-underline"
+          className="text-text-normal! !hover:text-underline"
         >
           {pointsRequired} Points to redeem
         </Text>

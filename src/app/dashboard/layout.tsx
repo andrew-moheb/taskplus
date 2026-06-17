@@ -9,7 +9,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     <Grid
       columns={12}
       gap={"24px"}
-      className="!p-6 !h-screen !overflow-hidden !m-0 bg-background"
+      className="p-6! h-screen! overflow-hidden! m-0! bg-background"
     >
       <GridCol span={2}>
         <SideBar />

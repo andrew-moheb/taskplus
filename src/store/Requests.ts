@@ -19,7 +19,7 @@ export type Kind = "leave" | "overTime" | "remoteWork" | "loan";
 
 // first request type (leave)
 export type LeaveRequest = {
-  kind: Kind;
+  kind: "leave";
   dayType: leaveDayType | "";
   leaveType: LeaveType | "";
   startDate: string | "";
@@ -31,7 +31,7 @@ export type LeaveRequest = {
 // other request kinds
 
 export type OverTime = {
-  kind: Kind;
+  kind: "overTime";
   date: string;
   startTime: string | "";
   endTime: string | "";
@@ -42,14 +42,14 @@ export type OverTime = {
 // Remote Work
 
 export type RemoteWork = {
-  kind: Kind;
+  kind: "remoteWork";
   date: string | "";
   reason: string | "";
   managerId: string;
 };
 
 export type Loan = {
-  kind: Kind;
+  kind: "loan";
   loanReason: string | "";
   Amount: number | 0 | string;
   detailedExplanation: string;

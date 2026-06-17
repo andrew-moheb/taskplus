@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  Badge,
-  Box,
-  Button,
-  Card,
-  Divider,
-  Flex,
-  Menu,
-  Text,
-} from "@mantine/core";
+import { Button, Card, Flex, Text } from "@mantine/core";
 import { RequestRecord } from "@/store/Requests";
 import { formatDate } from "@/utils/date";
 
@@ -21,7 +12,7 @@ function RequestCard({
   seeRequest,
   request,
 }: {
-  seeRequest: (id: string) => RequestRecord;
+  seeRequest: (id: string) => void;
   request: RequestRecord;
 }) {
   return (
@@ -86,7 +77,7 @@ function RequestCard({
 
       <Flex align="center" justify={"space-between"} gap={6} mb="md">
         <Text size="sm" c="dimmed" truncate={true} w={"60%"}>
-          Reason: {request.reason}
+          Reason: {request.kind !== "loan" ? request.reason : ""}
         </Text>
         <Button
           variant="light"

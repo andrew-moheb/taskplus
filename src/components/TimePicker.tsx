@@ -1,9 +1,7 @@
 import { ActionIcon } from "@mantine/core";
 import { TimeInput } from "@mantine/dates";
-import React, { useRef } from "react";
-import { BsClock } from "react-icons/bs";
-import { CiClock1, CiClock2, CiLock } from "react-icons/ci";
-import { MdOutlineTimer3Select, MdTimer } from "react-icons/md";
+import { useRef } from "react";
+import { CiClock2 } from "react-icons/ci";
 
 function TimePicker({
   label,

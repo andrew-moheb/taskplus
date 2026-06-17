@@ -2,7 +2,6 @@
 
 import { Grid, GridCol } from "@mantine/core";
 import Image from "next/image";
-
 import AutoImageSlide from "@/components/AutoImageSlide";
 
 function AuthLayout({ children }: { children: React.ReactNode }) {

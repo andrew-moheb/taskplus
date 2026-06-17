@@ -1,6 +1,6 @@
 import { Box, Group, Stack, Text } from "@mantine/core";
 import Link from "next/link";
-import { MdLink, MdOpenInBrowser, MdOpenInNew } from "react-icons/md";
+import { MdOpenInNew } from "react-icons/md";
 
 function NewsCard({
   title,
@@ -14,12 +14,7 @@ function NewsCard({
   url: string;
 }) {
   return (
-    <Box
-      w={"48%"}
-      px={16}
-      py={20}
-      className="border border-[#e7e7e7] rounded-[20px]"
-    >
+    <Box w={"48%"} px={16} py={20} className="border border-border rounded-xxl">
       <Stack gap={8}>
         <Group justify="space-between">
           <Text c={"#121212"} fz={16} fw={600}>

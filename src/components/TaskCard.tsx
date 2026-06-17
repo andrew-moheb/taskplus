@@ -22,10 +22,10 @@ type Status = "todo" | "inprogress" | "completed";
 type Task = {
   id: string;
   title: string;
-  priority: Priority;
-  status: Status;
-  dueDate: string;
-  points: number;
+  priority: Priority | null;
+  status: Status | null;
+  dueDate: string | null;
+  points: number | null;
 };
 
 // ─── Config ───────────────────────────────────────────────────────────────────
@@ -69,8 +69,8 @@ function TaskCard({
   onSeeDetails: (id: string) => void;
   onStatusChange: (id: string, status: Status) => void;
 }) {
-  const status = STATUS_CONFIG[task.status];
-  const priority = PRIORITY_CONFIG[task.priority];
+  const status = STATUS_CONFIG[task.status ?? "todo"];
+  const priority = PRIORITY_CONFIG[task.priority ?? "low"];
 
   const otherStatuses = (Object.keys(STATUS_CONFIG) as Status[]).filter(
     (s) => s !== task.status,
@@ -199,13 +199,13 @@ function TaskCard({
             fw={400}
             style={{
               color:
-                new Date(task.dueDate) < new Date() &&
+                new Date(task.dueDate ?? "") < new Date() &&
                 task.status !== "completed"
                   ? "#e03131"
                   : "#2f9e44",
             }}
           >
-            {formatDate(task.dueDate)}
+            {formatDate(task.dueDate ?? "")}
           </Text>
         </Flex>
         <Badge

@@ -1,17 +1,7 @@
-import {
-  Button,
-  Flex,
-  Group,
-  Radio,
-  Select,
-  Stack,
-  Textarea,
-} from "@mantine/core";
+import { Flex, Group, Radio, Select, Textarea } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { MdDateRange } from "react-icons/md";
 import { leaveDayType, LeaveRequest, LeaveType } from "../store/Requests";
-import { useUserStore } from "@/store/user";
-import { useState } from "react";
 import { getAllManagers } from "@/utils/managers";
 
 export const Intial_Leave_Form: LeaveRequest = {
