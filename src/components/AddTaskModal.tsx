@@ -317,7 +317,7 @@ function AddTaskModal({
               name="assigneduser"
               label={"Assign to"}
               data={users.map((user) => ({
-                label: `${user.firstname} ${user.lastname} ${user.firstname === currentUser?.firstname ? "(Me)" : ""}`,
+                label: `${user.firstname} ${user.lastname} ${user.id === currentUser?.id ? "(Me)" : ""}`,
                 value: user.id,
                 role: user.role,
               }))}
