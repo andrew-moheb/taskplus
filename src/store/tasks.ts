@@ -93,7 +93,7 @@ export const useTaskStore = create<
           ),
         }));
 
-        const { addPoints } = useUserStore.getState();
+        const { addPoints, currentUser } = useUserStore.getState();
         // add once logic
         if (!wasCompleted && nowCompleted && !task.pointsAwarded) {
           addPoints(task.userId, task.points ?? 0);
@@ -106,12 +106,16 @@ export const useTaskStore = create<
 
         // reclaim logic
         if (wasCompleted && !nowCompleted && task.pointsAwarded) {
-          addPoints(task.userId, -(task.points ?? 0));
-          set((state) => ({
-            tasks: state.tasks.map((t) =>
-              t.id === id ? { ...t, pointsAwarded: false } : t,
-            ),
-          }));
+          if (currentUser?.points === 0) {
+            addPoints(task.id, 0);
+          } else {
+            addPoints(task.userId, -(task.points ?? 0));
+            set((state) => ({
+              tasks: state.tasks.map((t) =>
+                t.id === id ? { ...t, pointsAwarded: false } : t,
+              ),
+            }));
+          }
         }
 
         notify.success("Status Updated successfully!");
