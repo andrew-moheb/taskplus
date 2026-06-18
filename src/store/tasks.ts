@@ -87,11 +87,13 @@ export const useTaskStore = create<
         const wasCompleted = task.status === "completed";
         const nowCompleted = status === "completed";
 
-        set((state) => ({
-          tasks: state.tasks.map((t) =>
-            t.id === id ? { ...t, status: status } : t,
-          ),
-        }));
+        if (!wasCompleted) {
+          set((state) => ({
+            tasks: state.tasks.map((t) =>
+              t.id === id ? { ...t, status: status } : t,
+            ),
+          }));
+        }
 
         const { addPoints } = useUserStore.getState();
         // add once logic
