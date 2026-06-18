@@ -104,18 +104,19 @@ export const useTaskStore = create<
           }));
         }
 
-        // reclaim logic
+        // recliam  logic
         if (wasCompleted && !nowCompleted && task.pointsAwarded) {
-          if (currentUser?.points === 0) {
-            addPoints(task.id, 0);
-          } else {
-            addPoints(task.userId, -(task.points ?? 0));
-            set((state) => ({
-              tasks: state.tasks.map((t) =>
-                t.id === id ? { ...t, pointsAwarded: false } : t,
-              ),
-            }));
-          }
+          // if (currentUser?.points === 0) {
+          //   addPoints(task.id, 0);
+          // } else {
+          //   addPoints(task.userId, -(task.points ?? 0));
+          //   set((state) => ({
+          //     tasks: state.tasks.map((t) =>
+          //       t.id === id ? { ...t, pointsAwarded: false } : t,
+          //     ),
+          //   }));
+          // }
+          notify.fail(`You can't change state of this task`);
         }
 
         notify.success("Status Updated successfully!");
