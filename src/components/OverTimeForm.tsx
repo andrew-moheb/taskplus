@@ -3,7 +3,7 @@ import { Flex, Select, Textarea } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { MdDateRange } from "react-icons/md";
 import TimePicker from "./TimePicker";
-import { getAllManagers } from "@/utils/managers";
+import { useAllManagers } from "@/utils/managers";
 
 export const Intial_OverTime_Form: OverTime = {
   kind: "overTime",
@@ -80,7 +80,7 @@ function OverTimeForm({
           }}
           value={form.managerId}
           onChange={(v) => onChange("managerId", v as string)}
-          data={getAllManagers()}
+          data={useAllManagers()}
           label="Manager"
           placeholder="Assign To"
         />

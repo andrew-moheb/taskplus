@@ -1,6 +1,6 @@
 "use client";
 import { notify } from "@/utils/toast";
-import { useTaskStore } from "@/store/tasks";
+import { useTaskStore, type Task, type Attachment } from "@/store/tasks";
 import {
   Button,
   FileInput,
@@ -59,42 +59,40 @@ function TaskDetails() {
   const [opened, { open, close }] = useDisclosure(true);
   const existingTask = tasks.find((task) => task.id === id);
 
-  // attachments may be stored as custom Attachment objects or File objects
-  // use a flexible any[] type to accept either shape without type errors
-  const [files, setFiles] = useState<any[]>(
+  // attachments may be stored as persisted Attachment objects or freshly-picked File objects
+  const [files, setFiles] = useState<(Attachment | File)[]>(
     existingTask ? existingTask.attachments : [],
   );
 
-  // use a loose any type for form data to avoid strict Task requirements when partially updating
-  const [formData, setFormData] = useState<any>(existingTask);
+  const [formData, setFormData] = useState<Task | undefined>(existingTask);
 
   const handleChanges = (newfiles: File[]) => {
     if (!newfiles) return;
     setFiles((prevfiles) => [...prevfiles, ...newfiles]);
   };
-  const openFile = (file: any) => {
+  const openFile = (file: Attachment | File) => {
     const newTab = window.open();
     if (!newTab) return;
 
-    if (file.url) {
+    if ("url" in file && file.url) {
       newTab.location.href = file.url;
     } else {
-      const url = URL.createObjectURL(file);
+      const url = URL.createObjectURL(file as File);
       newTab.location.href = url;
     }
   };
 
-  const handleRemoveFile = (fileToRemove: File) => {
+  const handleRemoveFile = (fileToRemove: Attachment | File) => {
     setFiles((prev) => prev.filter((file) => file !== fileToRemove));
   };
 
-  const updateForm = (key: keyof import("@/store/tasks").Task, value: any) => {
-    setFormData((prev: any) => ({ ...prev, [key]: value }));
+  const updateForm = <K extends keyof Task>(key: K, value: Task[K]) => {
+    setFormData((prev) => (prev ? { ...prev, [key]: value } : prev));
   };
 
   const handleUpdate = () => {
-    if (existingTask) {
-      updateTask(existingTask?.id, {
+    if (existingTask && formData) {
+      updateTask(existingTask.id, {
         title: formData.title.trim(),
         description: formData.description,
         status: formData.status,
@@ -103,7 +101,10 @@ function TaskDetails() {
         attachments: files.map((file) => ({
           id: v4(),
           name: file.name,
-          url: file.url ? file.url : URL.createObjectURL(file),
+          url:
+            "url" in file && file.url
+              ? file.url
+              : URL.createObjectURL(file as File),
           type: file.type,
           size: file.size,
         })),
@@ -228,7 +229,7 @@ function TaskDetails() {
               name="status"
               data={statusOptions}
               value={formData?.status}
-              onChange={(val) => updateForm("status", val)}
+              onChange={(val) => updateForm("status", val as Task["status"])}
               label="Status"
               placeholder="select Status"
             />
@@ -264,7 +265,7 @@ function TaskDetails() {
               data={priorityOptions}
               label="Priority"
               value={formData?.priority}
-              onChange={(val) => updateForm("priority", val)}
+              onChange={(val) => updateForm("priority", val as Task["priority"])}
               placeholder="select priority"
             />
           </Flex>

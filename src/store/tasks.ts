@@ -2,14 +2,12 @@ import { v4 } from "uuid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useUserStore } from "./user";
-import Tasks from "@/app/dashboard/my-tasks/page";
-import { stat } from "fs";
 import { notify } from "@/utils/toast";
 
 export type Priority = "low" | "medium" | "high";
 export type Status = "todo" | "inprogress" | "completed";
 
-type Attachment = {
+export type Attachment = {
   id: string;
   name: string; // original file name
   url: string; // base64 or object URL

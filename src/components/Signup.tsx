@@ -4,7 +4,7 @@ function SignUp({ onSwitch }: { onSwitch: () => void }) {
   return (
     <Flex align="center" justify="center">
       <p>
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <button
           type="button"
           onClick={onSwitch}

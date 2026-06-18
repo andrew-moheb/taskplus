@@ -1,6 +1,6 @@
 import { Loan } from "@/store/Requests";
 import { Flex, NumberInput, Select, Textarea } from "@mantine/core";
-import { getAllManagers } from "@/utils/managers";
+import { useAllManagers } from "@/utils/managers";
 
 export const Intial_Loan_Form: Loan = {
   kind: "loan",
@@ -83,7 +83,7 @@ function LoanForm({
           }}
           value={form.managerId}
           onChange={(v) => onChange("managerId", v as string)}
-          data={getAllManagers()}
+          data={useAllManagers()}
           label="Manager"
           placeholder="Assign To"
         />

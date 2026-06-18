@@ -7,7 +7,7 @@ import type { RequestRecord } from "@/store/Requests";
 
 type LeaveRecord = Extract<RequestRecord, { kind: "leave" }>;
 
-function leaveRequestReadonly({
+function LeaveRequestReadonly({
   request,
   managerNote,
   setManagerNote,
@@ -89,4 +89,4 @@ function leaveRequestReadonly({
   );
 }
 
-export default leaveRequestReadonly;
+export default LeaveRequestReadonly;

@@ -106,7 +106,10 @@ function AddTaskModal({
 
   // form helpers
 
-  const updateForm = (key: keyof typeof intialFormData, value: any) => {
+  const updateForm = <K extends keyof typeof intialFormData>(
+    key: K,
+    value: (typeof intialFormData)[K],
+  ) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -244,7 +247,7 @@ function AddTaskModal({
               name="status"
               data={statusOptions}
               value={formData.status}
-              onChange={(val) => updateForm("status", val)}
+              onChange={(val) => updateForm("status", val as Status | null)}
               label="Status"
               placeholder="select Status"
             />
@@ -282,7 +285,7 @@ function AddTaskModal({
               data={priorityOptions}
               label="Priority"
               value={formData.priority}
-              onChange={(val) => updateForm("priority", val)}
+              onChange={(val) => updateForm("priority", val as Priority | null)}
               placeholder="select priority"
             />
             <Select

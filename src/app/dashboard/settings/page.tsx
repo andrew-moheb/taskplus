@@ -1,6 +1,6 @@
 "use client";
 
-import { UserType, useUserStore } from "@/store/user";
+import { useUserStore } from "@/store/user";
 import { notify } from "@/utils/toast";
 import {
   Button,
@@ -15,7 +15,7 @@ import { CiMail } from "react-icons/ci";
 import { MdLock, MdVerifiedUser } from "react-icons/md";
 import { ToastContainer } from "react-toastify";
 
-function page() {
+function Page() {
   const {
     isLoading,
     error,
@@ -24,17 +24,15 @@ function page() {
     currentUser,
     updateUser,
   } = useUserStore();
-  const { firstname, lastname, email, role } = currentUser as UserType;
+  const firstname = currentUser?.firstname ?? "";
+  const lastname = currentUser?.lastname ?? "";
+  const email = currentUser?.email ?? "";
+  const role = currentUser?.role ?? "";
   const [settingsNav, setSettingsNav] = useState("user");
   const [formPasswordData, setformPasswordData] = useState({
     newpassword: "",
     confirmpassword: "",
   });
-
-  if (!currentUser) {
-    return <div>Loading...</div>;
-  }
-
   const [formUserInfoData, setUserInfoData] = useState({
     firstname: firstname,
     lastname: lastname,
@@ -50,6 +48,10 @@ function page() {
   const [formUserErrors, setUserFormErrors] = useState<{
     email?: string;
   }>();
+
+  if (!currentUser) {
+    return <div>Loading...</div>;
+  }
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -362,4 +364,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

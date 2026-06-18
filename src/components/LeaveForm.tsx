@@ -2,7 +2,7 @@ import { Flex, Group, Radio, Select, Textarea } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { MdDateRange } from "react-icons/md";
 import { leaveDayType, LeaveRequest, LeaveType } from "../store/Requests";
-import { getAllManagers } from "@/utils/managers";
+import { useAllManagers } from "@/utils/managers";
 
 export const Intial_Leave_Form: LeaveRequest = {
   kind: "leave",
@@ -136,7 +136,7 @@ function LeaveForm({
           }}
           value={form.managerId}
           onChange={(v) => onChange("managerId", v as string)}
-          data={getAllManagers()}
+          data={useAllManagers()}
           label="Manager"
           placeholder="Assign To"
         />

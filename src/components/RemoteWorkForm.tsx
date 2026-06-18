@@ -1,5 +1,5 @@
 import type { RemoteWork } from "@/store/Requests";
-import { getAllManagers } from "@/utils/managers";
+import { useAllManagers } from "@/utils/managers";
 import { Flex, Select, Textarea } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { MdDateRange } from "react-icons/md";
@@ -66,7 +66,7 @@ function RemoteWorkForm({
           }}
           value={form.managerId}
           onChange={(v) => onChange("managerId", v as string)}
-          data={getAllManagers()}
+          data={useAllManagers()}
           label="Manager"
           placeholder="Assign To"
         />

@@ -8,6 +8,7 @@ function NewsModal({ opened, close }: { opened: boolean; close: () => void }) {
       <Flex gap={16} align={"center"} wrap={"wrap"}>
         {News.map((item) => (
           <NewsCard
+            key={item.url}
             title={item.title}
             date={item.date}
             description={item.description}

@@ -108,7 +108,7 @@ export default function Coupons() {
             Redeem for {selectedGift?.pointsRequired} Points
           </Button>
           {redeemTest() ? (
-            <Text c={"red"}>Your can't redeem this coupon</Text>
+            <Text c={"red"}>Your can&apos;t redeem this coupon</Text>
           ) : (
             ""
           )}
