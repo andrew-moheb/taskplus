@@ -160,6 +160,7 @@ export const useUserStore = create<
 
       addPoints: (userId, points) =>
         set((state) => {
+          if (points < 0) points === 0;
           const apply = (u: UserType) =>
             u.id === userId ? { ...u, points: (u.points ?? 0) + points } : u;
 
